@@ -1,3 +1,39 @@
+# Questão 1: State
+
+## Visão Geral
+O padrão State gerencia o comportamento da classe BoletimProva durante as fases da prova de orientação. 
+
+## Participantes
+
+## EstadoProva (Interface do Estado)
+
+- Define os métodos que representam ações possíveis: registrarLargada, registrarChegada, registrarPassagem, registrarAtraso.
+- Permite que cada fase da prova tenha sua própria lógica.
+
+## BoletimProva (Contexto)
+
+- Mantém uma referência ao estado atual da prova (EstadoProva).
+- Delega o comportamento (registrar largada, passagem, etc.) para o estado atual.
+- Transita entre os estados com métodos como apresentarPraLargada() e registrarLargada().
+
+## States Concretos
+
+- EstadoPreProva: Nenhuma ação é permitida. Estado inicial da prova.
+
+- EstadoMomentoLargada: Apenas registro de atraso é permitido. Transição para Pista ocorre ao registrar a largada.
+
+- EstadoPista: Permite registrar atraso, passagens e chegada. Transição automática para Pós-Prova após chegada.
+
+- EstadoPosProva: Apenas o registro de atraso ainda é permitido. Nenhuma outra ação é válida após a chegada.
+
+## Porque State?
+
+- Encapsulamento de regras: Cada fase sabe o que pode ou não pode fazer
+- Evita ifs e switchs: Nada de if (fase == X) em todo lugar
+- Open/Closed Principle: Pode criar novos estados sem mexer nos antigos
+- Transições claras:	Mudanças de fase feitas de forma controlada
+- Alta coesão:	Cada classe trata de uma única responsabilidade
+
 # Questão 2: Chain of Responsibility
 
 ## Visão Geral
